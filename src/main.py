@@ -1,4 +1,7 @@
 from textnode import *
+from htmlnode import *
+
+
 
 def main():
     new_node = TextNode("This is a text node", TextType("bold"), "https://www.boot.dev")
