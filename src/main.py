@@ -16,5 +16,14 @@ def main():
     print(extract_markdown_images(text))
     text = "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
     print(extract_markdown_links(text))
+    text = "Here is a ![image [with brackets]](url) and [a link [with brackets]](url)"
+    print(extract_markdown_links(text))
+    print(extract_markdown_images(text))
+
+
+    text1 = "Here is a ![image [with brackets]](url) and [a link [with brackets]](url)"
+
+
+    print(extract_markdown_links(text1))
 
 main()
