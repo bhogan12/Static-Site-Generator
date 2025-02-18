@@ -37,4 +37,7 @@ def main():
     text = "Here is a ![image [with brackets]](url) and [a link [with brackets]](url)"
     print(split_nodes_image([TextNode(text, TextType.NORMAL)]))
     print(split_nodes_link([TextNode(text, TextType.NORMAL)]))
+
+    print(text_to_textnodes("This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"))
+
 main()
