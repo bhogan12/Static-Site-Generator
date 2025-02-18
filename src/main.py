@@ -26,4 +26,15 @@ def main():
 
     print(extract_markdown_links(text1))
 
+    text = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)"
+    print(split_nodes_image([TextNode(text, TextType.NORMAL)]))
+    text = "This is text with no images in it."
+    print(split_nodes_image([TextNode(text, TextType.NORMAL)]))
+    text = "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
+    print(split_nodes_link([TextNode(text, TextType.NORMAL)]))
+    text = "This is text with no links in it."
+    print(split_nodes_link([TextNode(text, TextType.NORMAL)]))
+    text = "Here is a ![image [with brackets]](url) and [a link [with brackets]](url)"
+    print(split_nodes_image([TextNode(text, TextType.NORMAL)]))
+    print(split_nodes_link([TextNode(text, TextType.NORMAL)]))
 main()
