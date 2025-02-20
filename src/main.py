@@ -1,6 +1,7 @@
 from textnode import *
 from htmlnode import *
 from inline_markdown import *
+from block_markdown import *
 
 
 
@@ -39,5 +40,9 @@ def main():
     print(split_nodes_link([TextNode(text, TextType.NORMAL)]))
 
     print(text_to_textnodes("This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"))
+
+    md = "# Header\n\nParagraph\n\n- List item\n- List item\n\n[link](somewhere) with an ![image](something)\n\n**bold**\n\n*italics*"
+    print(markdown_to_html_node(md).to_html())
+
 
 main()
