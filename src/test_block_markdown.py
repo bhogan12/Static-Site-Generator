@@ -44,3 +44,7 @@ class TestBlockMarkdown(unittest.TestCase):
         self.assertEqual(block_to_block_type(quote), BlockType.QUOTE)
         self.assertEqual(block_to_block_type(unordered), BlockType.UNORDERED_LIST)
         self.assertEqual(block_to_block_type(ordered), BlockType.ORDERED_LIST)
+    
+    #def test_markdown_to_html(self):
+        #md = "# Header\n\nParagraph\n\n- List item\n- List item\n\n[link](somewhere)\n\n![image](something)\n\n**bold**\n\n*italics*"
+        

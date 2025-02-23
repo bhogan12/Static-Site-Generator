@@ -1,48 +1,27 @@
-from textnode import *
-from htmlnode import *
-from inline_markdown import *
-from block_markdown import *
+import os
+import shutil
 
+def static_to_public(source_dir, target_dir):
+    if not os.path.exists(target_dir):
+        os.mkdir(target_dir)
+    
+    for file in os.listdir(source_dir):
+        src = os.path.join(source_dir, file)
+        tgt = os.path.join(target_dir, file)
 
+        if os.path.isfile(src):
+            shutil.copy(src, tgt)
+        else:
+            static_to_public(src, tgt)
+    
 
 def main():
-    new_node = TextNode("This is a text node", TextType("bold"), "https://www.boot.dev")
-    new_node2 = TextNode("This is a text node", TextType("bold"))
-    new_node3 = TextNode("This is a text node", TextType("bold"), "https://www.boot.dev")
-
-    print(new_node == new_node2)
-    print(new_node == new_node3)
-    print(new_node2)
-    text = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)"
-    print(extract_markdown_images(text))
-    text = "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
-    print(extract_markdown_links(text))
-    text = "Here is a ![image [with brackets]](url) and [a link [with brackets]](url)"
-    print(extract_markdown_links(text))
-    print(extract_markdown_images(text))
-
-
-    text1 = "Here is a ![image [with brackets]](url) and [a link [with brackets]](url)"
-
-
-    print(extract_markdown_links(text1))
-
-    text = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)"
-    print(split_nodes_image([TextNode(text, TextType.NORMAL)]))
-    text = "This is text with no images in it."
-    print(split_nodes_image([TextNode(text, TextType.NORMAL)]))
-    text = "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
-    print(split_nodes_link([TextNode(text, TextType.NORMAL)]))
-    text = "This is text with no links in it."
-    print(split_nodes_link([TextNode(text, TextType.NORMAL)]))
-    text = "Here is a ![image [with brackets]](url) and [a link [with brackets]](url)"
-    print(split_nodes_image([TextNode(text, TextType.NORMAL)]))
-    print(split_nodes_link([TextNode(text, TextType.NORMAL)]))
-
-    print(text_to_textnodes("This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"))
-
-    md = "# Header\n\nParagraph\n\n- List item\n- List item\n\n[link](somewhere) with an ![image](something)\n\n**bold**\n\n*italics*"
-    print(markdown_to_html_node(md).to_html())
+    print("Deleting...")
+    if os.path.exists("./public"):
+        shutil.rmtree("./public")
+    
+    print("Copying...")
+    static_to_public("./static", "./public")
 
 
 main()
