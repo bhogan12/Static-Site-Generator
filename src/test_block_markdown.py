@@ -45,6 +45,7 @@ class TestBlockMarkdown(unittest.TestCase):
         self.assertEqual(block_to_block_type(unordered), BlockType.UNORDERED_LIST)
         self.assertEqual(block_to_block_type(ordered), BlockType.ORDERED_LIST)
     
-    #def test_markdown_to_html(self):
-        #md = "# Header\n\nParagraph\n\n- List item\n- List item\n\n[link](somewhere)\n\n![image](something)\n\n**bold**\n\n*italics*"
+    def test_extract_title(self):
+        md = "*some random stuff*\nand some other stuff\n# The Title "
+        self.assertEqual(extract_title(md), "The Title")
         

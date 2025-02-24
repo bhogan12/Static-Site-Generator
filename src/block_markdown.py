@@ -94,7 +94,7 @@ def markdown_to_html_node(markdown):
                 code_props = f"class=\"language-{language_id}\""
             children = text_to_children(code_text)
             inner_tag = ParentNode("code", children, code_props)
-            node_list.append(ParentNode("pre", inner_tag))
+            node_list.append(ParentNode("pre", [inner_tag]))
 
         elif block_type == BlockType.HEADING:
             hash_count = get_heading_count(block)
@@ -139,3 +139,10 @@ def get_heading_count(heading_text):
         hash_count += 1
         heading_text = heading_text[1:]
     return hash_count
+
+def extract_title(markdown):
+    lines = markdown.split("\n")
+    for line in lines:
+        if line.startswith("# "):
+            return line[2:].strip()
+    raise Exception("No <h1> header detected")
