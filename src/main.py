@@ -1,16 +1,21 @@
 import os
 import shutil
-from web_generation import static_to_public, generate_page
+from web_generation import static_to_public, generate_pages_recursive
+
+dir_path_static = "./static"
+dir_path_public = "./public"
+dir_path_content = "./content"
+tempalte_path = "./template.html"
 
 def main():
     print("Deleting...")
-    if os.path.exists("./public"):
-        shutil.rmtree("./public")
+    if os.path.exists(dir_path_public):
+        shutil.rmtree(dir_path_public)
     
     print("Copying...")
-    static_to_public("./static", "./public")
+    static_to_public(dir_path_static, dir_path_public)
 
-    generate_page("./content/index.md", "./template.html", "./public/index.html")
+    generate_pages_recursive(dir_path_content, tempalte_path, dir_path_public)
 
     
     

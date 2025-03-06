@@ -23,6 +23,8 @@
 8. Sauron
 9. Aragorn
 
+> "I am in fact a Hobbit in all but size."
+
 Here's what `elflang` looks like (the perfect coding language):
 
 ```
